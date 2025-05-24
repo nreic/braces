@@ -1,0 +1,87 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: transparent;
+  font-family: "Helvetica", sans-serif;
+  font-size: 1.3em;
+  color: black;
+  margin: 0 auto;
+  text-align: center;
+}
+section {
+  width: 80%;
+  margin: 0 auto;
+}
+
+div {
+  /*border: 1px solid red;*/
+  padding: 0;
+}
+
+.actions ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+input[type='file'] {
+  display: none;
+}
+
+.upload-button {
+  display: inline-block;
+  background-color: ButtonFace;
+  font-size: 0.7em;
+  padding: 4px;
+  border: 1px solid darkgray;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.upload-button:hover {
+  background-color: #d0d0d7;
+}
+
+.image {
+  padding: 10px;
+}
+
+#toggle-image-button {
+  background-color: transparent;
+  border: none;
+}
+
+#controls-block ul {
+  list-style-type: none;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+#controls-block li {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10px;
+}
+
+.config-panel {
+  width: 350px;
+}
+.config-panel p {
+  font-size: 0.9em;
+}
+
+.config-image, .config-image img {
+  width: 150px;
+  font-size: 0.8em;
+}

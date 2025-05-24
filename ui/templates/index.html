@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Braces App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Braces App</h1>
+    <section>
+        <header></header>
+        <div class="actions">
+            <ul>
+                <li>
+                    <label for="image-upload" class="upload-button">
+                        upload image
+                        <input id="image-upload"
+                               type="file"
+                               accept="image/png, image/jpeg, image/jpg"/>
+                    </label>
+                </li>
+                <li>
+                    <button id="braces-button" type="button" disabled>
+                        apply braces
+                    </button></li>
+                <li>
+                    <a id="download-link" href="" download="braces_image">
+                        <button id="download-button" type="button" disabled>
+                            download
+                        </button>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <main>
+            <div class="image">
+                <button id="toggle-image-button" disabled >
+                    <img id="original-image"
+                         alt="Image of a person that shows their teeth"
+                         src="{{ url_for('static', filename='img/image.jpg') }}"
+                         width="500">
+                    <img id="braces-preview"
+                         style="display: none;"
+                         alt=""
+                         src=""
+                         width="500">
+                </button>
+            </div>
+
+
+            <div id="controls-block" style="display: none;">
+                <ul>
+                    <li>
+                        <div class="config-panel">
+                            <label for="row-num-control">
+                                Number of teeth rows
+                            </label><br>
+                            <input id="row-num-control"
+                                   class="config-input"
+                                    type="range"
+                                    min="0"
+                                    max="2"
+                                    value="0"
+                                    step="1"
+                                    autocomplete="off"/>
+                            <span id="row-num-value"></span><br>
+                            <label for="bracket-size-control">
+                                Bracket size
+                            </label><br>
+                            <input id="bracket-size-control"
+                                   class="config-input"
+                                    type="range"
+                                    min="2"
+                                    max="24"
+                                    value="10"
+                                    step="2"
+                                    autocomplete="off"/>
+                            <span id="bracket-size-value"></span>
+                        </div>
+                        <div class="config-image">
+                            <img id="wire-plot-image"
+                                 alt="Plot of centroids and wire function"
+                                 src="">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="config-panel">
+                            <label for="mask-dilation-control">
+                                Expand teeth mask (dilation)
+                            </label><br>
+                            <input id="mask-dilation-control"
+                                   class="config-input"
+                                    type="range"
+                                    min="0"
+                                    max="10"
+                                    value="1"
+                                    step="1"
+                                    autocomplete="off"/>
+                            <span id="mask-dilation-value"></span>
+                        </div>
+
+                        <div class="config-image">
+                            <img id="teeth-area-image"
+                                 alt="Teeth area for segmentation process"
+                                 src="">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="config-panel">
+                            <label for="brighten-control">
+                                Brighten image
+                            </label><br>
+                            <input id="brighten-control"
+                                   class="config-input"
+                                    type="range"
+                                    min="0"
+                                    max="255"
+                                    value="12"
+                                    step="1"
+                                    autocomplete="off"/>
+                            <span id="brighten-value"></span>
+                        </div>
+                        <div class="config-image">
+                            <img id="brighten-image"
+                                 alt="Interim Image after brightening"
+                                 src="">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="config-panel">
+                            <label for="thresh-blocksize-control">
+                                (Adapt.) Threshold blocksize
+                            </label><br>
+                            <input id="thresh-blocksize-control"
+                                   class="config-input"
+                                    type="range"
+                                    min="0"
+                                    max="1"
+                                    value="0.3"
+                                    step="0.1"
+                                    autocomplete="off"/>
+                            <span id="thresh-blocksize-value"></span>
+                        </div>
+                        <div class="config-image">
+                            <img id="thresh-blocksize-image"
+                                 alt="Interim Image of the adaptive thresholding"
+                                 src="">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="config-panel">
+                            <label for="closing-iterations-control">
+                                Remove black noise (closing)
+                            </label><br>
+                            <input id="closing-iterations-control"
+                                   class="config-input"
+                                    type="range"
+                                    min="0"
+                                    max="20"
+                                    value="1"
+                                    step="1"
+                                    autocomplete="off"/>
+                            <span id="closing-iterations-value"></span>
+                        </div>
+                        <div class="config-image">
+                            <img id="closing-iterations-image"
+                                 alt="Interim Image after closing for noise removal"
+                                 src="">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="config-panel">
+                            <label for="dist-transform-control">
+                                Decrease teeth size (dist. transf.)
+                            </label><br>
+                            <input id="dist-transform-control"
+                                   class="config-input"
+                                    type="range"
+                                    min="0"
+                                    max="1"
+                                    value="0.3"
+                                    step="0.1"
+                                    autocomplete="off"/>
+                            <span id="dist-transform-value"></span>
+                        </div>
+                        <div class="config-image">
+                            <img id="dist-transform-image"
+                                 alt="Interim Image after applying the distance transform algorithm"
+                                 src="">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="config-panel">
+                            <label for="erosion-iterations-control">
+                                Close bridges (erosion)
+                            </label><br>
+                            <input id="erosion-iterations-control"
+                                   class="config-input"
+                                    type="range"
+                                    min="0"
+                                    max="10"
+                                    value="1"
+                                    step="1"
+                                    autocomplete="off"/>
+                            <span id="erosion-iterations-value"></span>
+                        </div>
+                        <div class="config-image">
+                            <img id="erosion-iterations-image"
+                                 alt="Interim Image after erosion"
+                                 src="">
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </main>
+    </section>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
