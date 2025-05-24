@@ -25,8 +25,8 @@ training a U-net on the segmentation task, basic web UI and core backend.
 
 ### 1. Clone the Repository, install Requirements
 ```bash
-git clone https://github.com/nreic/braces-project.git
-cd braces-project
+git clone https://github.com/nreic/braces.git
+cd braces
 pip install -r requirements.txt
 ```
 
